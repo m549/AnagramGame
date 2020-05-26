@@ -83,7 +83,7 @@ final class StaticWordLibrary extends WordLibrary {
         "unsigned",
         "traditional"};
 
-    private static final String[] SCRAMBLED_WORD_LIST = {
+    /*private static final String[] SCRAMBLED_WORD_LIST = {
         "batsartcoin",
         "maibuguos",
         "ratimhteci",
@@ -129,7 +129,7 @@ final class StaticWordLibrary extends WordLibrary {
         "evtrxe",
         "nuisngde",
         "rtdatioialn"
-    };
+    };*/
     
     final static WordLibrary DEFAULT = new StaticWordLibrary();
 
@@ -154,7 +154,26 @@ final class StaticWordLibrary extends WordLibrary {
      * @return word at that index in its scrambled form
      */
     public String getScrambledWord(int idx) {
-        return SCRAMBLED_WORD_LIST[idx];
+        //return SCRAMBLED_WORD_LIST[idx];
+    	return scramble(idx);
+    }
+    
+    public String scramble(int idx) {
+    	
+    	char[] word_char = WORD_LIST[idx].toCharArray();
+    	
+    	for(int i=0; i<word_char.length; i++) {
+    		
+    		int random = (int)(Math.random() * (double)word_char.length);
+    		
+    		char tmp = word_char[i];
+    		word_char[i] = word_char[random];
+    		word_char[random] = tmp;
+    	}
+    	
+    	String scrambledWord = new String(word_char);
+    	
+    	return scrambledWord;
     }
 
     /**
